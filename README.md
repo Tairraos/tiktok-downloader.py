@@ -3,6 +3,8 @@ Tiktok video downloader build by Python.
   
 这是一个超级简单的Tiktok视频下载器。整个UI就只有一个下载按钮。如果你想有更漂亮的桌面下载程序，请移步： [tiktok-downloader](https://github.com/Tairraos/tiktok-downloader) 。  
   
+本仓库使用 MIT 许可  
+  
 ### 运行准备  
 本程序需要以下两个Lib支持  
 ```  
