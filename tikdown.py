@@ -32,16 +32,16 @@ downloading = False
 @retry(stop=stop_after_attempt(3), wait=wait_random(min=1, max=2))
 def get_tiktok_info(video_id):
     try:
-        tiktok_api_link = "https://api.tiktokv.com/aweme/v1/multi/aweme/detail/?aweme_ids=%5B{}%5D".format(video_id)  # 从TikTok官方API获取部分视频数据
+        tiktok_api_link = "https://api.tiktokv.com/aweme/v1/aweme/detail/?aweme_id={}".format(video_id)  # 从TikTok官方API获取部分视频数据
         log("正在请求API链接:", tiktok_api_link)
         response = requests.get(url=tiktok_api_link, headers=download_headers).text
         result = json.loads(response)
         return {
             "success": True,
-            "video_title": result["aweme_details"][0]["desc"],  # 视频标题,
-            "video_url": result["aweme_details"][0]["video"]["play_addr"]["url_list"][0],  # 无水印视频链接
-            "video_author": result["aweme_details"][0]["author"]["nickname"],  # 视频作者
-            "video_cover": result["aweme_details"][0]["video"]["cover"]["url_list"][0],  # 封面图
+            "video_title": result["aweme_detail"]["desc"],  # 视频标题,
+            "video_url": result["aweme_detail"]["video"]["play_addr"]["url_list"][0],  # 无水印视频链接
+            "video_author": result["aweme_detail"]["author"]["nickname"],  # 视频作者
+            "video_cover": result["aweme_detail"]["video"]["cover"]["url_list"][0],  # 封面图
         }
     except Exception as e:
         log("网络请求有错误")
